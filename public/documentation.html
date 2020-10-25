@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Movie FLIX</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <!-- <link rel="stylesheet" href="css/stylesheet.css" /> -->
+  </head>
+  <body>
+    <header>
+      <h1>
+        My Flix Project
+      </h1>
+          
+      <p>
+        This is an web application that will provide users with access to information about different movies, directors, and genres. Users
+        will be able to sign up, update their personal information, and create a list of their favorite movies.
+      </p>
+    </header>
+
+    <main>
+      <table class="table table-bordered">
+
+        <thead class="thead-light">
+          <tr>
+            <th>Description of the request</th>
+            <th>URL Endpoint</th>
+            <th>HTTP Method Type</th>
+            <th>Parameters in URL</th>
+            <th>Format of data in the body of request</th>
+            <th>Format of the response data</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Return a list of all movies to the user</td>
+            <td>/movies</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>None</td>
+            <td>A JSON object holding data about all movies</td>
+          </tr>
+                  
+          <tr>
+            <td>Return data about a single movie to the user</td>
+            <td>/movies/:Title</td>
+            <td>GET</td>
+            <td>Request parameter - Title of the movie</td>
+            <td>None</td>
+            <td>A JSON object that holds data - genre, description, director's name, and an image URL of the movie requested</td>
+          </tr>
+                  
+          <tr>
+            <td>Return data about a genre</td>
+            <td>/movies/genre/:Name</td>
+            <td>GET</td>
+            <td>Request parameter - Name of genre</td>
+            <td>None</td>
+            <td>A JSON object holding data about the requested genre - name and description</td>
+          </tr>
+                  
+          <tr>
+            <td>Return data about a director</td>
+            <td>/movies/director/:Name</td>
+            <td>GET</td>
+            <td>Request parameter- Name of director</td>
+            <td>None</td>
+            <td>A JSON object holding data about the director - name, bio, year of birth, year of death(if not empty)</td>
+          </tr>
+                  
+          <tr>
+            <td>Allow new users to register</td>
+            <td>/users</td>
+            <td>POST</td>
+            <td>None</td>
+            <td>A JSON object hodling data about the new user - username, password, emailID, and date of birth.
+              Ex: 
+              {
+                "Username": "Miriam Myers",
+                "Password": "cVVjmZ72",
+                "EmailId": "mirMyam_mir@gmail.com",
+                "BirthDay": "1991-09-09"
+              }
+            </td>
+            <td>A JSON object holding data about the new user - an userID, username, password, emailId, list of favorite movies(must be empty).
+              Ex:
+              {
+                FavoriteMovies: [],
+                "_id": "5f8fa291fcb1d515507db3e9",
+                "Username": "Miriam Myers",
+                "Password": "cVVjmZ72",
+                "EmailId": "mirMyam_mir@gmail.com",
+                "BirthDay": "1991-09-09",
+                "__v": 0
+              }
+            </td>
+          </tr>
+                  
+          <tr>
+            <td>Allow users to update their user info(username)</td>
+            <td>/users/:Username</td>
+            <td>PUT</td>
+            <td>Request parameter - Name of the user whose information needs to be updated. Ex: Thedor Schwann</td>
+            <td>A JSON object holding the updated data - username, password, emailID, and birthday.
+              Ex:
+              {
+                "Username": "Theodora Crain",
+                "Password": "Hi!l3N74a",
+                "EmailId": "theo_crain@gmail.com",
+                "BirthDay": "1982-08-09"
+              }
+            </td>
+            <td>A JSON object holding data - userID, username, password, emailID, and date of birth which reflects the changes made.
+              Ex:
+              {
+                FavoriteMovies: [
+                  "5f8e5de993ad097ba758deab"
+                ],
+                "_id": "5f8e752793ad097ba758dead",
+                "Username": "Theodora Crain",
+                "Password": "Hi!l3N74a",
+                "EmailId": "theo_crain@gmail.com",
+                "BirthDay": "1982-08-09"
+              }
+            </td>
+          </tr>
+                  
+          <tr>
+            <td>Allow users to add a movie to their list of favorites</td>
+            <td>/users/:Username/favoritemovies/:MovieID</td>
+            <td>POST</td>
+            <td>Request parameter- Movie ID of the movie to be added.</td>
+            <td>None</td>
+            <td>A JSON object of the user reflecting the changes made in the favorite movies list.</td>
+          </tr>
+                  
+          <tr>
+            <td>Allow users to remove a movie from their list of favorites</td>
+            <td>/users/:Username/favoritemovies/:MovieID</td>
+            <td>DELETE</td>
+            <td>Request parameter- Movie Id of the movie to be removed</td>
+            <td>None</td>
+            <td>A JSON object of the user reflecting the changes made in the favorite movies list.</td>
+          </tr>
+                  
+          <tr>
+            <td>Allow existing users to deregister</td>
+            <td>/users/:Username</td>
+            <td>DELETE</td>
+            <td>Request parameter- Username of the user</td>
+            <td>None</td>
+            <td>A text message indicating that the user has been deregistered</td>
+          </tr>
+
+        </tbody>
+
+
+      </table>
+    </main>
+
+
+  </body>
+</html>
